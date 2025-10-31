@@ -29,13 +29,13 @@ app.use(cors({
   origin: process.env.NODE_ENV === 'production' 
     ? [
         'https://task-manager-sigma-five-67.vercel.app', // ✅ your deployed frontend
-        'https://task-manager-frontend.vercel.app'        // (optional alternate if you rename)
       ] 
     : ['http://localhost:3000', 'http://localhost:3001'],
   methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
   allowedHeaders: ['Content-Type', 'Authorization'],
   credentials: true,
 }));
+app.options('*', cors()); // ✅ handle preflight requests for all routes
 
 app.use(express.json({ limit: '10mb' }));
 app.use(express.urlencoded({ extended: true }));
