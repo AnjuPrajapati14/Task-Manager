@@ -224,7 +224,7 @@ const TasksPage: NextPage = () => {
         <TaskModal
           isOpen={isModalOpen}
           onClose={handleModalClose}
-          onSubmit={editingTask ? handleUpdateTask : handleCreateTask}
+          onSubmit={(data) => editingTask ? handleUpdateTask(data as UpdateTaskData) : handleCreateTask(data as CreateTaskData)}
           task={editingTask}
           title={editingTask ? 'Edit Task' : 'Create New Task'}
         />
