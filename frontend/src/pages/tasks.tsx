@@ -221,13 +221,19 @@ const TasksPage: NextPage = () => {
         )}
 
         {/* Task Modal */}
-        <TaskModal
-          isOpen={isModalOpen}
-          onClose={handleModalClose}
-          onSubmit={(data) => editingTask ? handleUpdateTask(data as UpdateTaskData) : handleCreateTask(data as CreateTaskData)}
-          task={editingTask}
-          title={editingTask ? 'Edit Task' : 'Create New Task'}
-        />
+{/* Task Modal */}
+<TaskModal
+  isOpen={isModalOpen}
+  onClose={handleModalClose}
+  onSubmit={
+    editingTask
+      ? (handleUpdateTask as (data: CreateTaskData | UpdateTaskData) => Promise<boolean>)
+      : (handleCreateTask as (data: CreateTaskData | UpdateTaskData) => Promise<boolean>)
+  }
+  task={editingTask}
+  title={editingTask ? 'Edit Task' : 'Create New Task'}
+/>
+
       </div>
     </ProtectedRoute>
   );
