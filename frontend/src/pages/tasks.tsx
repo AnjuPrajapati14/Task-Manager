@@ -39,18 +39,22 @@ const TasksPage: NextPage = () => {
     sortOrder,
   });
 
-  const handleCreateTask = async (data: CreateTaskData): Promise<boolean> => {
-    const success = await createTask(data);
-    if (success) {
-      setCurrentPage(1);
-    }
-    return success;
-  };
+// handleCreateTask
+const handleCreateTask = async (data: CreateTaskData | UpdateTaskData): Promise<boolean> => {
+  const createData = data as CreateTaskData; // safely cast for create
+  const success = await createTask(createData);
+  if (success) {
+    setCurrentPage(1);
+  }
+  return success;
+};
 
-  const handleUpdateTask = async (data: UpdateTaskData): Promise<boolean> => {
-    if (!editingTask) return false;
-    return await updateTask(editingTask._id, data);
-  };
+// handleUpdateTask
+const handleUpdateTask = async (data: CreateTaskData | UpdateTaskData): Promise<boolean> => {
+  if (!editingTask) return false;
+  const updateData = data as UpdateTaskData; // safely cast for update
+  return await updateTask(editingTask._id, updateData);
+};
 
   const handleEditTask = (task: Task) => {
     setEditingTask(task);
