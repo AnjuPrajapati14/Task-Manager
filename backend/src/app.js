@@ -17,6 +17,7 @@ connectDatabase();
 // ✅ Apply CORS FIRST — before anything else
 app.use(cors({
   origin: [
+    'https://task-manager-web-app-psi.vercel.app',
     'https://task-manager-sigma-five-67.vercel.app',
     'http://localhost:3000',
     'http://localhost:3001'
